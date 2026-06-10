@@ -1,41 +1,35 @@
 from dotenv import load_dotenv
-
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 
 load_dotenv()
 
 llm = ChatGroq(
-    model="llama-3.3-70b-versatile"
+    model="llama3-8b-8192"
 )
 
 prompt = ChatPromptTemplate.from_template(
 """
-You are a professional note-taking assistant.
-
-Create:
-
-1. Short Summary
-
-2. Key Points
-
-3. Final Takeaway
+You are an expert YouTube video summarizer.
 
 Transcript:
-
 {transcript}
+
+Generate:
+1. Short Summary
+2. Key Takeaways
+3. Important Concepts
 """
 )
 
 chain = prompt | llm
 
-
 def generate_summary(transcript):
 
-    response = chain.invoke(
+    result = chain.invoke(
         {
-            "transcript": transcript[:12000]
+            "transcript": transcript
         }
     )
 
-    return response.content
+    return result.content
