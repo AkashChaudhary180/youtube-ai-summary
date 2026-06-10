@@ -3,4 +3,4 @@ uvicorn
 python-dotenv
 langchain
 langchain-groq
-pydantic
+langchain-text-splitters
