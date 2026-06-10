@@ -1,22 +1,10 @@
 from youtube_transcript_api import YouTubeTranscriptApi
 
 def get_transcript(video_id):
+    try:
+        transcript = YouTubeTranscriptApi.get_transcript(video_id)
 
-    api = YouTubeTranscriptApi()
+        return " ".join([item["text"] for item in transcript])
 
-    languages = [
-        "en",
-        "hi",
-        "en-US",
-        "en-GB"
-    ]
-
-    transcript = api.fetch(
-        video_id,
-        languages=languages
-    )
-
-    return " ".join(
-        snippet.text
-        for snippet in transcript
-    )
+    except Exception as e:
+        return f"ERROR: {str(e)}"
