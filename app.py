@@ -37,3 +37,15 @@ def summarize(video_id: str):
         print(e)
 
         raise e
+    
+@app.get("/test")
+def test():
+    from youtube_transcript_api import YouTubeTranscriptApi
+
+    api = YouTubeTranscriptApi()
+
+    transcript = api.fetch("Op6PbJZ5b2Q", languages=["hi"])
+
+    return {
+        "length": len(transcript)
+    }
