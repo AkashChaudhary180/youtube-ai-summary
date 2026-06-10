@@ -4,3 +4,4 @@ python-dotenv
 langchain
 langchain-groq
 langchain-text-splitters
+youtube-transcript-api
